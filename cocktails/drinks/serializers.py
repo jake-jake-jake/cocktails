@@ -3,9 +3,8 @@ from drinks.models import Drink, Ingredient, IngredientLine
 
 
 class DrinkSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
     ings = serializers.StringRelatedField(many=True)
-    name = serializers.CharField()
-    instructions = serializers.CharField()
     class Meta:
         model = Drink
         fields = ('name', 'instructions', 'ings')
