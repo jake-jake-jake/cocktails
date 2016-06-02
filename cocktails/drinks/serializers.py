@@ -12,6 +12,6 @@ class DrinkSerializer(serializers.ModelSerializer):
 
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Drink
-        fields = ('name', 'abv', 'type')
+        model = Ingredient
+        fields = ('name', 'id')
 

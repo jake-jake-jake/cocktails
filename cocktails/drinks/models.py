@@ -13,11 +13,11 @@ class Ingredient(models.Model):
         list_display = ('name')
 
     class Meta:
-        ordering = ['name']
+        ordering = ['id']
 
 
 class IngredientLine(models.Model):
-    ing = models.ForeignKey(Ingredient, on_delete=models.CASCADE, default='')
+    ing = models.ForeignKey(Ingredient, on_delete=models.CASCADE, default=1)
     amt = models.FloatField(default=0)
 
     def __str__(self):
