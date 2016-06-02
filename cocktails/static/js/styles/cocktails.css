@@ -1,0 +1,32 @@
+html {
+  background-color: azure;
+}
+
+.flex {
+  display: flex;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.search {
+  background-color: green;
+}
+
+.search button {
+  background-color: pink;
+}
+
+.drink {
+  background-color: orange;
+}
+
+.drink .active {
+  background-color: lime;
+}
+
+.drinkDetail {
+  background-color: purple;
+}

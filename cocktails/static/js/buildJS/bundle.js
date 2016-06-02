@@ -55,15 +55,86 @@
 
 	var React = __webpack_require__(2);
 
+	var Search = __webpack_require__(159);
+	var Drink = __webpack_require__(160);
+	var DrinkDetail = __webpack_require__(161);
+
 	var App = React.createClass({
 	  displayName: 'App',
 
 	  getInitialState: function getInitialState() {
-	    return {};
+	    return {
+	      drinks: [{ name: "nameSample", ings: [], instructions: "" }],
+	      ings: [{ name: "PeanutButter", pk: 0, detail: "Delicious and buttery" }, { name: "Jelly", pk: 1, detail: "SWEEEET" }],
+	      ingredient: null,
+	      activeDrink: undefined,
+	      testDetail: { name: "SAMPLE NAME",
+	        ings: ["blood", "sweat", "tears"],
+	        instructions: "lollerskates" }
+	    };
+	  },
+
+	  requestIngredientList: function requestIngredientList() {},
+
+	  search: function search(value) {
+	    //JQUERY GOES HERE
+	    //ON RESPONSE -> this.setState({})
+
+	    var pk = this.findIngredient(value);
+	    if (!pk) return;
+
+	    // this.setState({ ingredient})
+
+	    console.log(pk);
+	  },
+
+	  findIngredient: function findIngredient(text) {
+	    text = text.toUpperCase();
+	    var _iteratorNormalCompletion = true;
+	    var _didIteratorError = false;
+	    var _iteratorError = undefined;
+
+	    try {
+	      for (var _iterator = this.state.ings[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	        var ing = _step.value;
+
+	        if (ing.name.toUpperCase().indexOf(text)) return ing.pk;
+	      }
+	    } catch (err) {
+	      _didIteratorError = true;
+	      _iteratorError = err;
+	    } finally {
+	      try {
+	        if (!_iteratorNormalCompletion && _iterator.return) {
+	          _iterator.return();
+	        }
+	      } finally {
+	        if (_didIteratorError) {
+	          throw _iteratorError;
+	        }
+	      }
+	    }
+
+	    return null;
+	  },
+
+	  selectDrink: function selectDrink(activeDrink) {
+	    this.setState({ activeDrink: activeDrink });
 	  },
 
 	  render: function render() {
-	    return React.createElement('div', null, 'SOME GENERIC CONTENT');
+	    var drinks = this.state.drinks.map(function (drink, i) {
+	      return React.createElement(Drink, { drink: drink,
+	        index: i,
+	        key: i,
+	        active: i == this.state.activeDrink,
+	        select: this.selectDrink
+	      });
+	    }.bind(this));
+
+	    console.log("boop");
+
+	    return React.createElement('div', { className: 'flexCol' }, React.createElement(Search, { search: this.search }), React.createElement('div', null, 'Ingredient: whatever'), React.createElement('div', { className: 'flex' }, drinks, React.createElement(DrinkDetail, { drink: this.state.testDetail })));
 	  }
 
 	});
@@ -19669,6 +19740,87 @@
 
 	module.exports = deprecated;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 159 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var Search = React.createClass({
+	  displayName: "Search",
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      input: "searchInput"
+	    };
+	  },
+
+	  mySearch: function mySearch() {
+	    var value = document.getElementById(this.state.input).value;
+	    this.props.search(value);
+	  },
+
+	  render: function render() {
+	    return React.createElement("div", { className: "flexCol search" }, React.createElement("input", { id: this.state.input,
+	      placeholder: "Enter ingredient to search",
+	      onSubmit: this.mySearch }), React.createElement("button", { value: "Search",
+	      onClick: this.mySearch }));
+	  }
+	});
+
+	module.exports = Search;
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var Drink = React.createClass({
+	  displayName: "Drink",
+
+	  render: function render() {
+	    var activeClass = this.props.active ? " active" : "";
+	    return React.createElement("div", { className: "drink" + activeClass,
+	      onClick: function () {
+	        this.props.select(this.props.index);
+	      }.bind(this) }, "Name: ", this.props.drink.name);
+	  }
+	});
+
+	module.exports = Drink;
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var DrinkDetail = React.createClass({
+	  displayName: "DrinkDetail",
+
+	  getDefaultProps: function getDefaultProps() {
+	    return {};
+	  },
+
+	  render: function render() {
+	    console.log("props:", this.props);
+	    var ings = this.props.drink.ings.map(function (ing, i) {
+	      return React.createElement("li", { key: i }, ing);
+	    });
+	    return React.createElement("div", { className: "drinkDetail flexCol" }, React.createElement("h1", null, this.props.drink.name), React.createElement("ul", null, " ", ings, " "), this.props.drink.instructions);
+	  }
+
+	});
+
+	module.exports = DrinkDetail;
 
 /***/ }
 /******/ ]);

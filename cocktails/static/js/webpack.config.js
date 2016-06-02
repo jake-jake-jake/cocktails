@@ -2,7 +2,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: [
-    './src/main'
+    './src/main.js'
   ],
   output: {
     path: __dirname + '/buildJS',
