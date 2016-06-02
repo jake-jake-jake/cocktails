@@ -23,9 +23,10 @@ class IngredientLine(models.Model):
     def __str__(self):
         return "{} ounces of {}".format(str(self.amt), self.ing.name)
 
+
 class Drink(models.Model):
-    owner = models.ForeignKey('auth.User', related_name='drinks')
     name = models.CharField(max_length=100)
+    owner = models.ForeignKey('auth.User', related_name='drinks')
     ings = models.ManyToManyField(IngredientLine)
     instructions = models.TextField()
 
