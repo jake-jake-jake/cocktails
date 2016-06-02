@@ -2,10 +2,9 @@ from rest_framework import serializers
 from drinks.models import Drink, Ingredient, IngredientLine
 
 
-class IngredientSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=100)
-    abv = serializers.FloatField()
-    type = serializers.CharField(max_length=25)
+class IngredientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ingredient
 
     def create(self, validated_data):
         """
