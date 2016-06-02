@@ -21,7 +21,7 @@ class IngredientLine(models.Model):
     amt = models.FloatField(default=0)
 
     def __str__(self):
-        return self.ing.name
+        return "{} ounces of {}".format(str(self.amt), self.ing.name)
 
 class Drink(models.Model):
     name = models.CharField(max_length=100)
