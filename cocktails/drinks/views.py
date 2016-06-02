@@ -2,10 +2,6 @@ from drinks.models import Drink, Ingredient
 from drinks.serializers import DrinkSerializer, IngredientSerializer
 from drinks.permissions import IsOwnerOrReadOnly
 
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
-
 from rest_framework import generics
 from rest_framework import permissions
 
