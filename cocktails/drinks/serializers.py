@@ -7,7 +7,7 @@ class DrinkSerializer(serializers.ModelSerializer):
     ings = serializers.StringRelatedField(many=True)
     class Meta:
         model = Drink
-        fields = ('name', 'instructions', 'ings')
+        fields = ('name', 'instructions', 'ings', 'owner')
 
 
 class IngredientSerializer(serializers.ModelSerializer):
