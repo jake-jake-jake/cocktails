@@ -13,7 +13,7 @@ class AdminPageTest(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def visit_admin_page(self):
+    def test_visit_admin_page(self):
         # Visit admin page
         self.browser.get('http://localhost:8000/admin')
         # Check page title
@@ -27,12 +27,13 @@ class API_fetch_tests(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def fetch_Ingredient_JSON(self):
+    def test_fetch_Ingredient_JSON(self):
         pass
 
-    def fetch_Drink_JSON(self):
+    def test_fetch_Drink_JSON(self):
         pass
 
 
 if __name__ == '__main__':
-    unittest.main(warnings='ignore')
+    print('test')
+    unittest.main()
