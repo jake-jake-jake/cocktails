@@ -2,17 +2,15 @@ var React = require('react');
 
 var Search = React.createClass({
   mySearch: function(e) {
-    this.props.search( e.target.value.trim() );
+    this.props.search( e.target.value );
   },
   
   render: function() {
     return (
-      <div className = "flexCol search">
+      <div className = "searchBox">
         <input  type="text"
-                value = "Enter ingredient to search"
-                onSubmit    = { this.mySearch } />
-        <button value   = "Search"
-                onClick = { this.mySearch } />
+                placeholder = "Enter ingredient to search"
+                onChange    = { this.mySearch } />
       </div>
       )
     

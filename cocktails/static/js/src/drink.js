@@ -8,7 +8,7 @@ var Drink = React.createClass({
             onClick   = { function() {
                             this.props.select( this.props.index );
                           }.bind(this) } >
-        Name: { this.props.drink.name }
+        Name: { this.props.name }
       </div>
       )
   }
