@@ -6,7 +6,6 @@ urlpatterns = [
     url(r'^drinks/$', views.DrinkList.as_view()),
     url(r'^drinks/(?P<pk>[0-9]+)/$', views.DrinkDetail.as_view()),
     url(r'^ingredients', views.IngredientList.as_view()),
-    url(r'^index/', views.render_index),
     # url(r'^users/$', views.UserList.as_view()),
     # url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),
 

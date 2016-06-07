@@ -23,7 +23,12 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+
+# JS packages, etc.
 cocktails/static/js/node_modules/
+
+# databases
+db.sqlite3
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -61,3 +66,5 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+
