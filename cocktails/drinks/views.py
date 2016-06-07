@@ -5,6 +5,8 @@ from drinks.permissions import IsOwnerOrReadOnly
 from rest_framework import generics
 from rest_framework import permissions
 
+from django.template.response import TemplateResponse
+
 
 # class based views
 class DrinkList(generics.ListCreateAPIView):
@@ -30,3 +32,8 @@ class DrinkDetail(generics.RetrieveUpdateDestroyAPIView):
                           IsOwnerOrReadOnly)
     queryset = Drink.objects.all()
     serializer_class = DrinkSerializer
+
+
+# return index.html from template
+def render_index(request):
+    return TemplateResponse(request, 'index.html')
