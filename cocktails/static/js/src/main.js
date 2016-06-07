@@ -5,24 +5,34 @@ var Drink         = require('./drink.js');
 var DrinkDetail   = require('./drinkDetail.js');
 
 
+var ingredientsPlaceholder = [{name: "Sweet Vermouth", pk: 1},
+                              {name: "Bourbon", pk: 2},
+                              {name: "Dry Vermouth", pk: 3},
+                              {name: "Gin", pk: 4}]
+
+var drinksPlaceholder = [{name: "Manhattan",
+                          ings: ['2.0 ounces of Bourbon',
+                                 '.5 ounces of Sweet Vermouth'],
+                          instructions: 'Manhattan instructions'},
+                          {name: "Martini",
+                           ings: ["2.0 ounces of Gin",
+                                  ".5 ounces of Dry Vermouth"],
+                           instructions: 'Martini instructions'}]
+
+
 var App = React.createClass({
   getInitialState: function() {
     return {
-        drinks: [ {name: "nameSample", ings: [], instructions: ""}   ]
-      , ings: [ { name: "PeanutButter", pk: 0, detail: "Delicious and buttery" }
-              , { name: "Jelly", pk: 1, detail: "SWEEEET" }
-              ]
-      , ingredient: null
+        drinks: drinksPlaceholder
+      , ingredient: ingredientsPlaceholder
       , activeDrink: undefined
-      , testDetail: { name: "SAMPLE NAME"
-                     , ings: ["blood", "sweat", "tears"]
-                     , instructions: "lollerskates" }
+      , testDetail: drinks[0]
     };
     
   },
   
   requestIngredientList: function() {
-    
+    // AJAX call to ingredients API
   },
   
   search: function( value ) {
