@@ -59,22 +59,29 @@
 	var Drink = __webpack_require__(160);
 	var DrinkDetail = __webpack_require__(161);
 
+	var ingredientsPlaceholder = [{ name: "Sweet Vermouth", pk: 1 }, { name: "Bourbon", pk: 2 }, { name: "Dry Vermouth", pk: 3 }, { name: "Gin", pk: 4 }];
+
+	var drinksPlaceholder = [{ name: "Manhattan",
+	  ings: ['2.0 ounces of Bourbon', '.5 ounces of Sweet Vermouth'],
+	  instructions: 'Manhattan instructions' }, { name: "Martini",
+	  ings: ["2.0 ounces of Gin", ".5 ounces of Dry Vermouth"],
+	  instructions: 'Martini instructions' }];
+
 	var App = React.createClass({
 	  displayName: 'App',
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      drinks: [{ name: "nameSample", ings: [], instructions: "" }],
-	      ings: [{ name: "PeanutButter", pk: 0, detail: "Delicious and buttery" }, { name: "Jelly", pk: 1, detail: "SWEEEET" }],
-	      ingredient: null,
+	      drinks: drinksPlaceholder,
+	      ingredient: ingredientsPlaceholder,
 	      activeDrink: undefined,
-	      testDetail: { name: "SAMPLE NAME",
-	        ings: ["blood", "sweat", "tears"],
-	        instructions: "lollerskates" }
+	      testDetail: drinks[0]
 	    };
 	  },
 
-	  requestIngredientList: function requestIngredientList() {},
+	  requestIngredientList: function requestIngredientList() {
+	    // AJAX call to ingredients API
+	  },
 
 	  search: function search(value) {
 	    //JQUERY GOES HERE
@@ -19752,20 +19759,13 @@
 	var Search = React.createClass({
 	  displayName: "Search",
 
-	  getInitialState: function getInitialState() {
-	    return {
-	      input: "searchInput"
-	    };
-	  },
-
-	  mySearch: function mySearch() {
-	    var value = document.getElementById(this.state.input).value;
-	    this.props.search(value);
+	  mySearch: function mySearch(e) {
+	    this.props.search(e.target.value.trim());
 	  },
 
 	  render: function render() {
-	    return React.createElement("div", { className: "flexCol search" }, React.createElement("input", { id: this.state.input,
-	      placeholder: "Enter ingredient to search",
+	    return React.createElement("div", { className: "flexCol search" }, React.createElement("input", { type: "text",
+	      value: "Enter ingredient to search",
 	      onSubmit: this.mySearch }), React.createElement("button", { value: "Search",
 	      onClick: this.mySearch }));
 	  }
