@@ -77,6 +77,7 @@ var App = React.createClass({
     }.bind(this) );
     return (
       <div className = "appContainer" >
+        <h1>GIMME A DRINK</h1>
         <Search search = { this.search } />
         <Ingredients items = { this.state.narrowedIngredients } 
                      select = { this.getDrinks } />

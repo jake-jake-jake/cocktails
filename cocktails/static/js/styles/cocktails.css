@@ -1,32 +1,41 @@
 html {
-  background-color: azure;
 }
 
-.flex {
-  display: flex;
+.container {
+  background-color: white;
+  width: 100%;
+  height: 100%;
 }
 
-.flexCol {
-  display: flex;
-  flex-direction: column;
+.appContainer {
+    background-color: white;
+    border: 1px solid;
+    border-color: black;
+    max-width: 500px;
+    margin-left: 150px;
+    text-align: center;
 }
 
-.search {
-  background-color: green;
+.appContainer .h1 {
+    text-align: center;
 }
 
-.search button {
-  background-color: pink;
+.searchContainer {
+    padding-bottom: 10px
 }
 
-.drink {
-  background-color: orange;
+.ingredientsContainer {
+
 }
 
-.drink .active {
-  background-color: lime;
+.ingredientsContainer .li {
+
 }
 
-.drinkDetail {
-  background-color: purple;
+.drinksContainer {
+
+}
+
+.detailContainer {
+
 }
