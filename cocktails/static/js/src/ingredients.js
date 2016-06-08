@@ -1,20 +1,15 @@
 var React = require('react');
 
-var Drink = React.createClass({
+var Ingredients = React.createClass({
+  
   logClick: function(item) {
     console.log(item)
   },
-  
-  render: function() {
-    var header = 'Drinks with that ingredient';
-    var listitems = this.props.items;
-    if(listitems.length < 1) {
-      header = ''
-    }
 
+  render: function() {
+    var listitems = this.props.items;
     return (
-      <div className = "drinkContainer">
-        <h3>{header}</h3>
+      <div className = "ingredientContainer">
         <ul>
           {listitems.map(function(item) {
             var boundclick = this.logClick.bind(this, item)
@@ -23,8 +18,8 @@ var Drink = React.createClass({
           }, this)}
         </ul>
       </div>
-      )
+      );
   }
 });
 
-module.exports = Drink;
+module.exports = Ingredients;

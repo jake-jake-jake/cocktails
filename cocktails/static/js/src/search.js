@@ -7,10 +7,10 @@ var Search = React.createClass({
   
   render: function() {
     return (
-      <div className = "searchBox">
-        <input  type="text"
-                placeholder = "Enter ingredient to search"
-                onChange    = { this.mySearch } />
+      <div className          = "searchBox">
+        <input  type          = "text"
+                placeholder   = "Enter ingredient to search"
+                onChange      = {this.mySearch} />
       </div>
       )
     

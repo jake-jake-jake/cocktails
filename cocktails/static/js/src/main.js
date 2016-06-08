@@ -1,8 +1,10 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
-var Search        = require('./search.js');
 var Drink         = require('./drink.js');
 var DrinkDetail   = require('./drinkDetail.js');
+var Ingredients   = require('./ingredients.js');
+var Search        = require('./search.js');
 
 var ingredientsPlaceholder = [{name: "Sweet Vermouth", pk: 1},
                               {name: "Bourbon", pk: 2},
@@ -47,28 +49,19 @@ var App = React.createClass({
     // AJAX call to ingredients API
   },
   
-  search: function( value ) {
-    //JQUERY GOES HERE
-    //ON RESPONSE -> this.setState({})
-    let narrowedIngredients = this.findIngredient(value);
-    // if (!pk) return;
-    
-    this.setState({narrowedIngredients: narrowedIngredients})
-   
-  },
-  
-  findIngredient: function(inp) {
-    if(!inp) {
-      return [];
-    }
-
+  search: function(text) {
+    // Strip user input text of spaces; set array of ingredients that have
+    // stripped text in their name to state.
+    let inp = text.trim()
     var matches = this.state.ingredients.filter(function(elem, i, ings) {
       return elem.name.toUpperCase().indexOf(inp.toUpperCase()) >= 0;
     }, inp);
-
-    return matches;
+    if(!inp) {
+      matches = []
+    }
+    this.setState({narrowedIngredients: matches})
   },
-  
+    
   selectDrink: function( activeDrink ) {
     this.setState({ activeDrink });
   },
@@ -82,24 +75,16 @@ var App = React.createClass({
                                   select  = { this.selectDrink }
                                   />
     }.bind(this) );
-
-    let ingredients = this.state.narrowedIngredients.map(function(ingredient, i) {
-                        return <li>{ingredient.name}</li>
-    });
-    
     return (
-      <div className = "mainContainer" >
+      <div className = "appContainer" >
         <Search search = { this.search } />
-        <div className="ingredientContainer">
-          <ul> {ingredients} </ul>
-        </div>
-        <div className = "foundDrink">
-          { drinks }
-          <h2>Drinks with that ingredient</h2>
-          <DrinkDetail drink = { this.state.testDetail } />
-        </div>
-        
+        <Ingredients items = { this.state.narrowedIngredients } 
+                     select = { this.getDrinks } />
+        <Drink items = {this.state.drinks}
+               select = {this.selectDrink} />
+        <DrinkDetail drink = { this.state.testDetail } />
       </div>
+        
       );
   }
   
