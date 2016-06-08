@@ -19,6 +19,7 @@ class AdminPageTest(unittest.TestCase):
         # Check page title
         self.assertIn('Django site admin', self.browser.title)
 
+
 class API_fetch_tests(unittest.TestCase):
 
     def setUp(self):
@@ -33,6 +34,18 @@ class API_fetch_tests(unittest.TestCase):
     def test_fetch_Drink_JSON(self):
         pass
 
+
+class ReactAppTests(unittest.TestCase):
+
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+
+    def tearDown(self):
+        self.browser.quit()
+
+    def test_fetch_index(self):
+        self.browser.get('http://localhost:8000/index')
+        self.assertIn('Cocktails', self.browser.title)
 
 if __name__ == '__main__':
     print('test')
