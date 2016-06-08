@@ -26,7 +26,7 @@ var/
 
 # JS packages, etc.
 cocktails/static/js/node_modules/
-cocktails/static/js/bundleJS/bundle.js
+cocktails/static/js/buildJS/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
