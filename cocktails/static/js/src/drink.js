@@ -1,7 +1,7 @@
 var React = require('react');
 
 var Drink = React.createClass({
-  logClick: function(item) {
+  handleClick: function(item) {
     console.log(item)
   },
   
@@ -17,7 +17,7 @@ var Drink = React.createClass({
         <h3>{header}</h3>
         <ul>
           {listitems.map(function(item) {
-            var boundclick = this.logClick.bind(this, item)
+            var boundclick = this.handleClick.bind(this, item)
             return <li key={item.pk} onClick={boundclick}
                     >{item.name}</li>
           }, this)}

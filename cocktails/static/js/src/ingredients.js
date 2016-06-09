@@ -2,8 +2,10 @@ var React = require('react');
 
 var Ingredients = React.createClass({
   
-  logClick: function(item) {
+  handleClick: function(item) {
+    console.log('Logging within Ingredient component; you clicked on an li')
     console.log(item)
+    this.props.select(item.id)
   },
 
   render: function() {
@@ -12,7 +14,7 @@ var Ingredients = React.createClass({
       <div className = "ingredientContainer">
         <ul>
           {listitems.map(function(item) {
-            var boundclick = this.logClick.bind(this, item)
+            var boundclick = this.handleClick.bind(this, item)
             return <li key={item.pk} onClick={boundclick}
                     >{item.name}</li>
           }, this)}
