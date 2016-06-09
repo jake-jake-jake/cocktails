@@ -3,8 +3,7 @@ var React = require('react');
 var Ingredients = React.createClass({
   
   handleClick: function(item) {
-    console.log('Logging within Ingredient component; you clicked on an li')
-    console.log(item)
+    // Pass item id to be queried by App.getDrinks
     this.props.select(item.id)
   },
 

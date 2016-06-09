@@ -38,10 +38,9 @@ var App = React.createClass({
     return {
         drinks: [],
         ingredients: [],
-        activeDrink: {name: "Martini",
-                         ings: ["2.0 ounces of Gin",
-                                ".5 ounces of Dry Vermouth"],
-                         instructions: 'Martini instructions'},
+        activeDrink: {name: "",
+                         ings: [],
+                         instructions: ""},
         narrowedIngredients: []
     };
   },

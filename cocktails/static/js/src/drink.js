@@ -2,7 +2,7 @@ var React = require('react');
 
 var Drink = React.createClass({
   handleClick: function(item) {
-    console.log(item)
+    this.props.select(item);
   },
   
   render: function() {

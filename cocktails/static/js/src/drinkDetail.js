@@ -7,7 +7,7 @@ var DrinkDetail = React.createClass({
   },
   
   render: function() {
-    let ings = this.props.drink.ings.map(function(ing, i) {
+    var ings = this.props.drink.ings.map(function(ing, i) {
                 return ( <li key = { i }>
                           { ing }
                         </li> )
