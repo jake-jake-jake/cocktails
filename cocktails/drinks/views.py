@@ -27,11 +27,20 @@ class IngredientList(generics.ListAPIView):
         serializer.save(owner=self.request.user)
 
 
+class DrinkByIngredient(generics.ListAPIView):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    serializer_class = DrinkSerializer
+
+    def get_queryset(self):
+        return Drink.objects.filter(ings__ing__id=self.kwargs['pk'])
+
 class DrinkDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly)
-    queryset = Drink.objects.all()
     serializer_class = DrinkSerializer
+    def get_queryset(self):
+        return Drink.objects.filter(pk=self.kwargs['pk'])
+
 
 
 # return index.html from template
