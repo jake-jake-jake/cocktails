@@ -21,6 +21,16 @@ var drinksPlaceholder = [{name: "Manhattan",
                          instructions: 'Martini instructions'}]
 
 var App = React.createClass({
+  requestIngredientList:  function() {
+      let xhr = new XMLHttpRequest();
+      xhr.open("GET", this.props.ingredientsURL, true);
+      xhr.onload = function() {
+        let ingsjson = JSON.parse(xhr.responseText);
+        this.setState({ingredients: ingsjson});
+      }.bind(this);
+      xhr.send();
+    },
+
   getInitialState: function() {
     return {
         drinks: [{name: "Manhattan",
@@ -31,10 +41,7 @@ var App = React.createClass({
                            ings: ["2.0 ounces of Gin",
                                   ".5 ounces of Dry Vermouth"],
                            instructions: 'Martini instructions'}],
-        ingredients: [{name: "Sweet Vermouth", pk: 1},
-                              {name: "Bourbon", pk: 2},
-                              {name: "Dry Vermouth", pk: 3},
-                              {name: "Gin", pk: 4}],
+        ingredients: [],
         activeDrink: undefined,
         testDetail: {name: "Manhattan",
                           ings: ['2.0 ounces of Bourbon',
@@ -42,17 +49,18 @@ var App = React.createClass({
                           instructions: 'Manhattan instructions'},
         narrowedIngredients: []
     };
-    
   },
   
-  requestIngredientList: function() {
-    // AJAX call to ingredients API
+  componentDidMount: function() {
+    this.requestIngredientList();
   },
+
   
   search: function(text) {
     // Strip user input text of spaces; set array of ingredients that have
     // stripped text in their name to state.
-    let inp = text.trim()
+    
+    let inp = text.trim();
     var matches = this.state.ingredients.filter(function(elem, i, ings) {
       return elem.name.toUpperCase().indexOf(inp.toUpperCase()) >= 0;
     }, inp);
@@ -67,14 +75,6 @@ var App = React.createClass({
   },
   
   render: function() {
-    let drinks = this.state.drinks.map(function(drink, i) {
-                    return <Drink name   = { drink.name }
-                                  index   = { i }
-                                  key     = { i }
-                                  active  = { i == this.state.activeDrink }
-                                  select  = { this.selectDrink }
-                                  />
-    }.bind(this) );
     return (
       <div className = "appContainer" >
         <h1>GIMME A DRINK</h1>
@@ -85,7 +85,6 @@ var App = React.createClass({
                select = {this.selectDrink} />
         <DrinkDetail drink = { this.state.testDetail } />
       </div>
-        
       );
   }
   
@@ -94,6 +93,7 @@ var App = React.createClass({
 
 
 ReactDOM.render(
-  <App />,
+  <App ingredientsURL='../ingredients.json'
+       drinksURL='ingredientsearch/' />,
   document.getElementById('content')
 );

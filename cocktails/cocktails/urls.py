@@ -22,6 +22,6 @@ from drinks.views import render_index
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^index', render_index),
     url(r'^', include('drinks.urls')),
+    url(r'^$', render_index),
 ]
