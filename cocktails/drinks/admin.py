@@ -10,9 +10,9 @@ class DrinkAdmin(admin.ModelAdmin):
 
 @admin.register(IngredientLine)
 class IngredientLineAdmin(admin.ModelAdmin):
-    fields = ('name', 'amt')
+    fields = ('ing', 'amt')
 
 
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
-    fields = ('name', 'abv', 'type')
+    fields = ('name', 'abv', 'type',)
