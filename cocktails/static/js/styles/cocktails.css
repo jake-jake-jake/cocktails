@@ -1,46 +1,44 @@
 html {
   font-size: 1em;
   font-family: Helvetica;
-}
-
-.content {
-  background-color: white;
-  width: 100%;
-  height: 100%;
-}
-
-.noBullet {
-  list-style-type: none;
+  background-image: url('small_steps.png');
 }
 
 .appContainer {
-    background-color: white;
-    border: 1px solid;
-    border-color: black;
-    max-width: 500px;
-    margin-left: 20%;
-    text-align: left;
-    padding: 10px;
+  position: relative;
+  left: 25%;
+  background-color: white;
+  max-width: 500px;
+  height: 95vh;
+  text-align: left;
+  padding: 10px;
 }
 
-.appContainer .h1 {
+.appContainer h1 {
     text-align: center;
 }
 
+.appContainer ul {
+  list-style-type: none;
+}
+
 .searchContainer {
-    padding-left: 15px;
+  text-align: center;
+}
+
+.searchContainer input {
+  font-family: inherit;
+  font-size: 125%;
 }
 
 .ingredientsContainer {
-
+  padding-left: 20px;
 }
 
-
-
-.drinksContainer {
-
+.drinkContainer {
+  padding-left: 20px;
 }
 
 .detailContainer {
-
+  padding-left: 20px;
 }
