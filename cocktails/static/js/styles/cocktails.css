@@ -1,7 +1,7 @@
 html {
   font-size: 1em;
   font-family: Helvetica;
-  background-image: url('small_steps.png');
+  background-image: url('escheresque_ste.png');
 }
 
 .appContainer {
@@ -12,9 +12,11 @@ html {
   height: 95vh;
   text-align: left;
   padding: 10px;
+  border-radius: 6px;
 }
 
 .appContainer h1 {
+    color: black;
     text-align: center;
 }
 
@@ -27,9 +29,13 @@ html {
 }
 
 .searchContainer input {
+  text-align: center;
   font-family: inherit;
   font-size: 125%;
+  border: none;
+  outline: none;
 }
+
 
 .ingredientsContainer {
   padding-left: 20px;
