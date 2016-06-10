@@ -12,6 +12,7 @@ var App = React.createClass({
         drinks: [],
         ingredients: [],
         activeDrink: {name: "", ings: [], instructions: ""},
+        lastDrinkSearch: '',
         narrowedIngredients: []
     };
   },
@@ -53,10 +54,13 @@ var App = React.createClass({
     // Query API for drinks using ingredient tied to primary key
     let xhr = new XMLHttpRequest();
     let url = this.props.drinksURL + pk.toString() + '.json'
+    if(url==this.state.lastDrinkSearch){
+      return
+    }
     xhr.open("GET", url, true);
     xhr.onload = function() {
       let drinks = JSON.parse(xhr.responseText);
-      this.setState({drinks: drinks});
+      this.setState({drinks: drinks, lastDrinkSearch: url});
       if(drinks.length==1){
         this.selectDrink(drinks[0]);
       }
@@ -86,8 +90,6 @@ var App = React.createClass({
       </div>
       );
   }
-  
-  
 });
 
 
