@@ -21,7 +21,7 @@ var Ingredients = React.createClass({
 
     return (
       <div className = "ingredientContainer">
-        <ul className="noBullet">
+        <ul>
           {listitems.map(function(item) {
             var boundclick = this.handleClick.bind(this, item)
             return <li key={item.pk} onClick={boundclick}

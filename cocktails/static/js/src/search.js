@@ -9,7 +9,7 @@ var Search = React.createClass({
     return (
       <div className          = "searchContainer">
         <input  type          = "text"
-                placeholder   = "Enter ingredient to search"
+                placeholder   = "What have you got?"
                 onChange      = {this.mySearch} />
       </div>
       )
