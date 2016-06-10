@@ -73,14 +73,14 @@ var App = React.createClass({
   render: function() {
     return (
       <div className = "appContainer" >
-        <h1>GIMME A DRINK</h1>
-        <Search search = { this.search } />
-        <Ingredients header ='Ingredients'
-                     items = { this.state.narrowedIngredients } 
-                     select = { this.getDrinks } />
-        <Drink header='Drinks with this ingredient'
-               items = {this.state.drinks}
-               select = {this.selectDrink} />
+        <h1>MAKE YOURSELF A DRINK</h1>
+        <Search search={ this.search } />
+        <Ingredients header='Ingredients'
+                     items={this.state.narrowedIngredients} 
+                     select={this.getDrinks}/>
+        <Drink header='With that, you can make:'
+               items={this.state.drinks}
+               select={this.selectDrink} />
         <DrinkDetail drink = { this.state.activeDrink } />
       </div>
       );

@@ -1,4 +1,6 @@
 html {
+  font-size: 1em;
+  font-family: Helvetica;
 }
 
 .content {
@@ -7,13 +9,18 @@ html {
   height: 100%;
 }
 
+.noBullet {
+  list-style-type: none;
+}
+
 .appContainer {
     background-color: white;
     border: 1px solid;
     border-color: black;
     max-width: 500px;
-    margin-left: 150px;
-    text-align: center;
+    margin-left: 20%;
+    text-align: left;
+    padding: 10px;
 }
 
 .appContainer .h1 {
@@ -21,16 +28,14 @@ html {
 }
 
 .searchContainer {
-    padding-bottom: 10px
+    padding-left: 15px;
 }
 
 .ingredientsContainer {
 
 }
 
-.ingredientsContainer .li {
 
-}
 
 .drinksContainer {
 

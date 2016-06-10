@@ -15,7 +15,7 @@ var DrinkDetail = React.createClass({
     return (
       <div className = "drinkDetail">
         <h3>{ this.props.drink.name }</h3>
-        <ul> { ings } </ul>
+        <ul className="noBullet"> { ings } </ul>
         <p>{ this.props.drink.instructions }</p>
       </div>
     )
