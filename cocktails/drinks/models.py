@@ -9,9 +9,6 @@ class Ingredient(models.Model):
     def __str__(self):
         return self.name
 
-    class Admin:
-        list_display = ('name')
-
     class Meta:
         ordering = ['name']
 
@@ -19,16 +16,28 @@ class Ingredient(models.Model):
 class IngredientLine(models.Model):
     ing = models.ForeignKey(Ingredient, on_delete=models.CASCADE, default=1)
     amt = models.FloatField(default=0)
+    fractions = {0.25: '¼',
+                  0.5: '½',
+                 0.75: '¾',
+                    1: '1',
+                 1.25: '1¼',
+                  1.5: '1½',
+                 1.75: '1¾',
+                    2: '2',
+                 2.25: '2¼',
+                  2.5: '2½',
+                 2.75: '2¾',
+                    3: '3'}
 
     class Meta:
-        ordering = ['ing', 'amt']
+        ordering = ['-amt', 'ing']
 
     def __str__(self):
         if self.amt == 0:
             return self.ing.name
-        elif self.amt < 1:
-            "{} ounce of {}".format(str(self.amt), self.ing.name)
-        return "{} ounces of {}".format(str(self.amt), self.ing.name)
+        elif self.amt <= 1.0:
+            return "{} ounce {}".format(self.fractions[(self.amt)], self.ing.name)
+        return "{} ounces {}".format(self.fractions[(self.amt)], self.ing.name)
 
 
 class Drink(models.Model):
