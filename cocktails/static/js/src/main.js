@@ -6,6 +6,7 @@ var DrinkDetail   = require('./drinkDetail.js');
 var Ingredients   = require('./ingredients.js');
 var Search        = require('./search.js');
 
+
 var App = React.createClass({
   getInitialState: function() {
     return {
@@ -81,6 +82,7 @@ var App = React.createClass({
         <h1>Make Yourself a Drink</h1>
         <Search search={this.search} />
         <Ingredients header='Ingredients'
+                     autofocus="true"
                      items={this.state.narrowedIngredients} 
                      select={this.getDrinks}/>
         <Drink header={tryone}
