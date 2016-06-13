@@ -1,7 +1,12 @@
 html {
-  font-size: 1em;
-  font-family: Helvetica;
+  font-family: 'Lora';
+  font-size: 1.1em;
   background-image: url('escheresque_ste.png');
+
+}
+
+h1 h2 h3 {
+
 }
 
 #content{
@@ -11,20 +16,27 @@ html {
 .appContainer {
   position: fixed;
   left: 25vw;
-  min-width: 50vw;
-  max-width: 500px;
+  width: 500px;
   background-color: white;
   height: 94vh;
   text-align: left;
   padding: 10px;
   border-radius: 6px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 5);
+}
+
+/* Passion One font for all headers on page; margin bottom none. */
+.appContainer h1, h2, h3 {
+  font-family: 'Passion One';
+  font-weight: 400;
+  color: black;
+  margin-bottom: 0px;
 }
 
 .appContainer h1 {
-    color: black;
-    text-align: center;
-    padding-top: -10px;
-    margin-bottom: 0px;
+  font-size: 3em;
+  text-align: center;
+  margin-top: 5px;
 }
 
 .appContainer ul {
@@ -38,13 +50,11 @@ html {
 .searchContainer input {
   text-align: center;
   font-family: inherit;
-  font-size: 125%;
   border: none;
   outline: none;
 }
 
-
-.ingredientsContainer {
+.ingredientContainer {
   padding-left: 20px;
 }
 
@@ -54,4 +64,5 @@ html {
 
 .detailContainer {
   padding-left: 20px;
+  padding-right: 20px;
 }
