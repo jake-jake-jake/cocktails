@@ -20,7 +20,7 @@ var Drink = React.createClass({
     }
     return (
       <div className = "drinkContainer">
-        <h3>{this.props.header}</h3>
+        <h2>{this.props.header}</h2>
         <ul>
           {listitems.map(function(item) {
             var boundclick = this.handleClick.bind(this, item)
