@@ -71,7 +71,7 @@ var App = React.createClass({
   selectDrink: function( activeDrink ) {
     // console.log('.selectDrink method of App; param activeDrink:')
     // console.log(activeDrink)
-    this.setState({ activeDrink: activeDrink });
+    this.setState({activeDrink: activeDrink});
   },
   
   render: function() {
@@ -79,7 +79,7 @@ var App = React.createClass({
     return (
       <div className = "appContainer" >
         <h1>Make Yourself a Drink</h1>
-        <Search search={ this.search } />
+        <Search search={this.search} />
         <Ingredients header='Ingredients'
                      items={this.state.narrowedIngredients} 
                      select={this.getDrinks}/>

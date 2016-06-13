@@ -4,21 +4,32 @@ html {
   background-image: url('escheresque_ste.png');
 }
 
+#content{
+  
+}
+
 .appContainer {
-  position: relative;
-  left: 25%;
-  background-color: white;
+  position: fixed;
+  left: 25vw;
+  min-width: 50vw;
   max-width: 500px;
-  height: 95vh;
+  background-color: white;
+  height: 94vh;
   text-align: left;
   padding: 10px;
   border-radius: 6px;
+
+}
+
+.appContainer .subTitle {
+  text-align: center;
 }
 
 .appContainer h1 {
     color: black;
     text-align: center;
     padding-top: -10px;
+    margin-bottom: 0px;
 }
 
 .appContainer ul {
