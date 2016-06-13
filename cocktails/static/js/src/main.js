@@ -5,6 +5,7 @@ var Drink         = require('./drink.js');
 var DrinkDetail   = require('./drinkDetail.js');
 var Ingredients   = require('./ingredients.js');
 var Search        = require('./search.js');
+var Modal         = require('./modal.js')
 
 
 var App = React.createClass({
@@ -14,7 +15,8 @@ var App = React.createClass({
         ingredients: [],
         activeDrink: {name: "", ings: [], instructions: ""},
         lastDrinkSearch: '',
-        narrowedIngredients: []
+        narrowedIngredients: [],
+        showModal: false
     };
   },
   
@@ -74,6 +76,11 @@ var App = React.createClass({
     // console.log(activeDrink)
     this.setState({activeDrink: activeDrink});
   },
+
+  toggleModal: function() {
+    this.setState({showModal: !this.state.showModal})
+  },
+
   
   render: function() {
     var tryone = 'Why don\'t you try one of these?'
@@ -89,6 +96,10 @@ var App = React.createClass({
                items={this.state.drinks}
                select={this.selectDrink} />
         <DrinkDetail drink = { this.state.activeDrink } />
+        <div className='modalContainer'>
+          <button className="loginButton" onClick={this.toggleModal}>or add something</button>
+          <Modal show={this.state.showModal} toggle={this.toggleModal} />
+        </div>
       </div>
       );
   }

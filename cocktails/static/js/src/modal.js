@@ -28,18 +28,19 @@ var Modal = React.createClass({
   },
   
   handleClick: function() {
-    this.setState({show: false});
+    this.props.toggle.call();
   },
 
   render: function() {
+    console.log(this.props)
     if(!this.state.show) {
       return null
     }
     return (
-      <div className = "searchModal">
+      <div className="mainModal">
         <div className="inner">
-          <h2>THIS IS THE SEARCH MODAL</h2>
-          <p onClick={this.handleClick}>CLICK</p>
+            <h2>THIS IS THE SEARCH MODAL</h2>
+            <p onClick={this.handleClick}>CLICK</p>
         </div>
       </div>
     )
