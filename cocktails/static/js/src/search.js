@@ -6,16 +6,13 @@ var Search = React.createClass({
     return {showModal: false}
   },
 
-  toggleModal: function() {
-    console.log('CLICK CLICK')
-    console.log(this.state.showModal)
-    this.setState({showModal: !this.state.showModal})
-    console.log(this.state.showModal)
+  openModal: function() {
+    this.setState({showModal: true})
   },
 
   mySearch: function(e) {
     this.props.search( e.target.value );
-  },
+  }, 
   
   render: function() {
     return (
@@ -23,7 +20,7 @@ var Search = React.createClass({
         <input  type          = "text"
                 placeholder   = "What have you got?"
                 onChange      = {this.mySearch} />
-        <button onClick={this.toggleModal}>?</button>
+        <button onClick={this.openModal}>?</button>
         <Modal className='searchModal' show={this.state.showModal} />
       </div>
       )

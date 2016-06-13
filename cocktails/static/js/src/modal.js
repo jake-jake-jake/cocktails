@@ -13,6 +13,12 @@ var Modal = React.createClass({
             show: 'false'};
   },
 
+  componentWillReceiveProps: function(nextProps){
+    if(nextProps.show != this.state.show) {
+      this.setState({show: nextProps.show})
+    }
+  },
+
   getInitialState: function() {
       return {opacity: this.props.opacity,
               display: this.props.display,
@@ -22,7 +28,7 @@ var Modal = React.createClass({
   },
   
   handleClick: function() {
-    this.setState({show: !this.state.show})
+    this.setState({show: false});
   },
 
   render: function() {
@@ -31,8 +37,10 @@ var Modal = React.createClass({
     }
     return (
       <div className = "searchModal">
-        <h2>THIS IS THE SEARCH MODAL</h2>
-        <p onClick={this.handleClick}>CLICK</p>
+        <div className="inner">
+          <h2>THIS IS THE SEARCH MODAL</h2>
+          <p onClick={this.handleClick}>CLICK</p>
+        </div>
       </div>
     )
   }
