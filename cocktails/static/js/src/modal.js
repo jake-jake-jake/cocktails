@@ -39,8 +39,11 @@ var Modal = React.createClass({
     return (
       <div className="mainModal">
         <div className="inner">
-            <h2>THIS IS THE SEARCH MODAL</h2>
-            <p onClick={this.handleClick}>CLICK</p>
+            <h2>Add an Ingredient</h2>
+            <input type="text" placeholder="Name" />
+            <input type="text" placeholder="ABV" />
+            <input type="text" placeholder="Type" />
+            <button onClick={this.handleClick}>Close</button>
         </div>
       </div>
     )
