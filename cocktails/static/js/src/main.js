@@ -6,7 +6,7 @@ var DrinkDetail   = require('./drinkDetail.js');
 var Ingredients   = require('./ingredients.js');
 var Search        = require('./search.js');
 var Modal         = require('./modal.js')
-
+var PutForm       = require('./putform.js')
 
 var App = React.createClass({
   getInitialState: function() {
@@ -100,6 +100,7 @@ var App = React.createClass({
           <button className="loginButton" onClick={this.toggleModal}>Add Something</button>
           <Modal show={this.state.showModal} toggle={this.toggleModal} />
         </div>
+        <PutForm />
       </div>
       );
   }
