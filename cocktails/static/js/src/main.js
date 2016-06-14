@@ -97,7 +97,7 @@ var App = React.createClass({
                select={this.selectDrink} />
         <DrinkDetail drink = { this.state.activeDrink } />
         <div className='modalContainer'>
-          <button className="loginButton" onClick={this.toggleModal}>or add something</button>
+          <button className="loginButton" onClick={this.toggleModal}>Add Something</button>
           <Modal show={this.state.showModal} toggle={this.toggleModal} />
         </div>
       </div>
