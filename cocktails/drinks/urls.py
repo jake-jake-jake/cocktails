@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^ingredientsearch/(?P<pk>[0-9]+)/$',
         views.DrinkByIngredient.as_view()),
     url(r'^ingredients/?$', views.IngredientList.as_view()),
+    url(r'^addingredient$', views.AddIngredient.as_view())
     # url(r'^users/$', views.UserList.as_view()),
     # url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),
 

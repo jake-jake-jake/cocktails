@@ -93,9 +93,9 @@ var App = React.createClass({
                        fields: [{placeholder: "Ingredient Name", type: "text", name: "name"},
                                {placeholder: "ABV", type: "number", step: .5, name: "abv"},
                                {placeholder: "Type", type: "text", name: "type"}],
-                       url: "/unset/url",
+                       url: this.props.addIngredientURL,
                        className: "putForm",
-                       buttonText: "Button"
+                       buttonText: "Add Ingredient"
                       };
     return (
       <div className = "appContainer" >
@@ -121,6 +121,7 @@ var App = React.createClass({
 
 ReactDOM.render(
   <App ingredientsURL='ingredients.json'
-       drinksURL='ingredientsearch/' />,
+       drinksURL='ingredientsearch/'
+       addIngredientURL='addingredient' />,
   document.getElementById('content')
 );

@@ -1,11 +1,13 @@
 from drinks.models import Drink, Ingredient
-from drinks.serializers import DrinkSerializer, IngredientSerializer
+from drinks.serializers import DrinkSerializer, IngredientSerializer, AddIngredientSerializer
 from drinks.permissions import IsOwnerOrReadOnly
 
 from rest_framework import generics
 from rest_framework import permissions
 
 from django.template.response import TemplateResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 
 # class based views
@@ -16,6 +18,16 @@ class DrinkList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+
+class AddIngredient(generics.CreateAPIView):
+    # permissions = (need to add logged in only permission for this)
+    queryset = Ingredient.objects.all()
+    serializer_class = AddIngredientSerializer
+
+    @method_decorator(csrf_exempt)
+    def perform_create(self, serializer):
+        serializer.save(**self.kwargs)
 
 
 class IngredientList(generics.ListAPIView):

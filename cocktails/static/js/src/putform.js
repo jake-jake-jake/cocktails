@@ -46,7 +46,7 @@ var PutForm = React.createClass({
     }
     let xhr = new XMLHttpRequest();
     let url = this.props.url
-    xhr.open("PUT", url, true);
+    xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
       let ingredient = this.state;

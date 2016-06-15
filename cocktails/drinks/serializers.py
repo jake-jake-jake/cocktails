@@ -15,3 +15,8 @@ class IngredientSerializer(serializers.ModelSerializer):
         model = Ingredient
         fields = ('name', 'id')
 
+
+class AddIngredientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ingredient
+        fields = ('name', 'id', 'abv', 'type')
