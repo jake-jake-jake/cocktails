@@ -39,21 +39,18 @@ var PutForm = React.createClass({
     // Make a PUT request from the content of the form, derived from this.state values,
     // to the address at this.props.url
     e.preventDefault();
-    console.log('You submitted the button.');
-    if(!e) {
-      console.log('Set some error handler here');
-      return null;
-    }
+    console.log('You submitted the form.');
     let xhr = new XMLHttpRequest();
-    let url = this.props.url
+    let url = this.props.url;
+    let ingredient = this.state;
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
-      let ingredient = this.state;
-      console.log(ingredient)
-      xhr.send();
+      console.log('The request has been processed.')
+      console.log('HEY JAKE ALSO DISALLOW GLOBAL PERMISSIONS.')
+      console.log(xhr)
     }.bind(this);
-    xhr.send();
+    xhr.send(JSON.stringify(ingredient));
   },
 
   render: function() {

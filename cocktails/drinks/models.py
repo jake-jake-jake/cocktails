@@ -34,8 +34,8 @@ class IngredientLine(models.Model):
 
     def __str__(self):
         if self.amt == 0:
-            return "\t\t{}".format(self.ing.name)
-        return "{} oz.\t{}".format(self.fractions[(self.amt)], self.ing.name)
+            return "{}".format(self.ing.name)
+        return "{} oz. {}".format(self.fractions[(self.amt)], self.ing.name)
 
 
 class Drink(models.Model):

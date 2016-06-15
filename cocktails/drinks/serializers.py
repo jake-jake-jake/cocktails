@@ -1,4 +1,7 @@
+from django.contrib.auth.models import User
+
 from rest_framework import serializers
+
 from drinks.models import Drink, Ingredient, IngredientLine
 
 
@@ -13,10 +16,11 @@ class DrinkSerializer(serializers.ModelSerializer):
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
-        fields = ('name', 'id')
-
-
-class AddIngredientSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Ingredient
         fields = ('name', 'id', 'abv', 'type')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    drinks = serializers.PrimaryKeyRelatedField(many=True, queryset=Drink.objects.all())
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'drinks')

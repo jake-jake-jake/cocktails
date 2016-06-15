@@ -1,13 +1,29 @@
 from drinks.models import Drink, Ingredient
-from drinks.serializers import DrinkSerializer, IngredientSerializer, AddIngredientSerializer
+from drinks.serializers import (DrinkSerializer,
+                                IngredientSerializer,
+                                UserSerializer)
 from drinks.permissions import IsOwnerOrReadOnly
 
 from rest_framework import generics
 from rest_framework import permissions
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
 
+from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.template.response import TemplateResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
+
+
+#  Hacking together a response class to get stuff posted to DB
+class JSONResponse(HttpResponse):
+    """
+    An HttpResponse that renders its content into JSON.
+    """
+    def __init__(self, data, **kwargs):
+        content = JSONRenderer().render(data)
+        kwargs['content_type'] = 'application/json'
+        super(JSONResponse, self).__init__(content, **kwargs)
 
 
 # class based views
@@ -20,23 +36,13 @@ class DrinkList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 
-class AddIngredient(generics.CreateAPIView):
-    # permissions = (need to add logged in only permission for this)
-    queryset = Ingredient.objects.all()
-    serializer_class = AddIngredientSerializer
-
-    @method_decorator(csrf_exempt)
-    def perform_create(self, serializer):
-        serializer.save(**self.kwargs)
-
-
-class IngredientList(generics.ListAPIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+class IngredientList(generics.ListCreateAPIView):
+    permission_classes = (permissions.AllowAny, )
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save()
 
 
 class DrinkByIngredient(generics.ListAPIView):
@@ -46,6 +52,7 @@ class DrinkByIngredient(generics.ListAPIView):
     def get_queryset(self):
         return Drink.objects.filter(ings__ing__id=self.kwargs['pk'])
 
+
 class DrinkDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly)
@@ -54,7 +61,27 @@ class DrinkDetail(generics.RetrieveUpdateDestroyAPIView):
         return Drink.objects.filter(pk=self.kwargs['pk'])
 
 
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
 
 # return index.html from template
 def render_index(request):
     return TemplateResponse(request, 'index.html')
+
+
+@csrf_exempt
+def add_ingredient(request):
+    data = JSONParser().parse(request)
+    print(data)
+    serializer = IngredientSerializer(data=data)
+    if serializer.is_valid():
+        serializer.save()
+        return JSONResponse(serializer.data, status=201)
+    return JSONResponse(serializer.errors, status=400)
