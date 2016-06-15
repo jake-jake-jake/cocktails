@@ -1,4 +1,5 @@
 var React = require('react');
+var PutForm = require('./putform.js')
 
 // Modal class with four default props:
 // opacity = level of transparency of takeover
@@ -38,10 +39,7 @@ var Modal = React.createClass({
     return (
       <div className="mainModal">
         <div className="inner">
-            <h2>Add an Ingredient</h2>
-            <input type="text" placeholder="Name" />
-            <input type="text" placeholder="ABV" />
-            <input type="text" placeholder="Type" />
+            <PutForm {...this.props.formprops} />
             <button onClick={this.handleClick}>Close</button>
         </div>
       </div>

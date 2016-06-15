@@ -9,6 +9,13 @@ var Modal         = require('./modal.js')
 var PutForm       = require('./putform.js')
 
 var App = React.createClass({
+  // Takes two props from the call to ReactDOM: 
+  // 
+  // ingredientsURL --> used to query ingredients 
+  // drinksURL      --> used to query drinks, by ingredient pk
+  // 
+  // 
+
   getInitialState: function() {
     return {
         drinks: [],
@@ -43,7 +50,7 @@ var App = React.createClass({
   },
   
   requestIngredientList:  function() {
-    // Using vanilla JS, make an API call to grab list of ingredients
+    // Make an API call to grab list of ingredients
     let xhr = new XMLHttpRequest();
     xhr.open("GET", this.props.ingredientsURL, true);
     xhr.onload = function() {
@@ -72,8 +79,6 @@ var App = React.createClass({
   },
 
   selectDrink: function( activeDrink ) {
-    // console.log('.selectDrink method of App; param activeDrink:')
-    // console.log(activeDrink)
     this.setState({activeDrink: activeDrink});
   },
 
@@ -84,6 +89,14 @@ var App = React.createClass({
   
   render: function() {
     var tryone = 'Why don\'t you try one of these?'
+    let ingPutProps = {header: "Add an ingredient",
+                       fields: [{placeholder: "Ingredient Name", type: "text", name: "name"},
+                               {placeholder: "ABV", type: "number", step: .5, name: "abv"},
+                               {placeholder: "Type", type: "text", name: "type"}],
+                       url: "/unset/url",
+                       className: "putForm",
+                       buttonText: "Button"
+                      };
     return (
       <div className = "appContainer" >
         <h1>Make Yourself a Drink</h1>
@@ -98,9 +111,8 @@ var App = React.createClass({
         <DrinkDetail drink = { this.state.activeDrink } />
         <div className='modalContainer'>
           <button className="loginButton" onClick={this.toggleModal}>Add Something</button>
-          <Modal show={this.state.showModal} toggle={this.toggleModal} />
+          <Modal show={this.state.showModal} toggle={this.toggleModal} formprops={ingPutProps} />
         </div>
-        <PutForm />
       </div>
       );
   }
