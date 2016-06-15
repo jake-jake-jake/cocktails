@@ -1,12 +1,11 @@
 var React = require('react');
 
 /* Super rad modular form submitter. It makes a put request to the url in the props. 
-** Form fields dynamically set via the array in the fields property. Observe default
-** props for more info.
-** Or modify this obj as you need.
+** Form fields dynamically set via the array of objects in the fields property. 
+** Check default props for more info or modify this one as you need:
              {header: "A Put Form",
               fields: [{placeholder: "Email placeholder", type: "text", name: "Email"},
-                       {placeholder: "Name placeholder", type: "text", name: "Name"},
+                       {placeholder: "Number placeholder", type: "number", step:.5, name: "number"},
                        {placeholder: "Addr placeholder", type: "text", name: "Address"}],
               url: "/unset/url",
               className: "putForm",
@@ -16,7 +15,7 @@ var React = require('react');
 
 var PutForm = React.createClass({
   getDefaultProps: function() {
-      return {header: "A Put Form",
+      return {header: "DEFAULT FORM VALUES",
               fields: [{placeholder: "Email placeholder", type: "text", name: "Email"},
                        {placeholder: "Name placeholder", type: "text", name: "Name"},
                        {placeholder: "Addr placeholder", type: "text", name: "Address"}],
@@ -48,6 +47,7 @@ var PutForm = React.createClass({
     let xhr = new XMLHttpRequest();
     let url = this.props.url
     xhr.open("PUT", url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
       let ingredient = this.state;
       console.log(ingredient)
