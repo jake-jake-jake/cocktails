@@ -32,7 +32,6 @@ var Modal = React.createClass({
   },
 
   render: function() {
-    console.log(this.props)
     if(!this.state.show) {
       return null
     }
