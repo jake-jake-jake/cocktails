@@ -20,6 +20,8 @@ html {
   text-align: left;
   border-radius: 6px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .2);
+  -webkit-transition: width 1s, height 1s, color 2s1 -webkit-transform 1s;
+  transition: width 1s, height 1s, background-color 1s, transform 1s;
 }
 
 /* Passion One font for all headers on page; margin bottom none. */
@@ -59,6 +61,11 @@ html {
 
 .ingredientContainer {
   padding-left: 20px;
+}
+
+.ingredientContainer li:active, li:hover {
+  color: plum;
+  font-weight: 700;
 }
 
 .drinkContainer {
