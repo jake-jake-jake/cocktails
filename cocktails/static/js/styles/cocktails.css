@@ -25,6 +25,7 @@ html {
 /* Passion One font for all headers on page; margin bottom none. */
 .appContainer h1, h2, h3 {
   font-family: 'Passion One';
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, .1); 
   font-weight: 400;
   color: black;
   margin-bottom: 0px;
