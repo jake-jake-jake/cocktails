@@ -20,15 +20,15 @@ html {
   text-align: left;
   border-radius: 6px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .2);
-  -webkit-transition: width 1s, height 1s, color 2s1 -webkit-transform 1s;
-  transition: width 1s, height 1s, background-color 1s, transform 1s;
+  -webkit-transition: width .1, height .1, color 2s -webkit-transform 1s;
+  transition: width .5s, height .5s, color 1s, transform 1s;
 }
 
 /* Passion One font for all headers on page; margin bottom none. */
 .appContainer h1, h2, h3 {
   font-family: 'Passion One';
-  text-shadow: 1px 1px 0px rgba(0, 0, 0, .1); 
   font-weight: 400;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, .1); 
   color: black;
   margin-bottom: 0px;
 }
@@ -63,9 +63,9 @@ html {
   padding-left: 20px;
 }
 
-.ingredientContainer li:active, li:hover {
-  color: plum;
-  font-weight: 700;
+/* Allow for selectable list items */
+.appContainer li:active, li:hover {
+  color: #e737d5;
 }
 
 .drinkContainer {
@@ -75,6 +75,11 @@ html {
 .detailContainer {
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.detailContainer li {
+  color: black;
+  text-shadow: none;
 }
 
 /* Styling for Modal and its button */

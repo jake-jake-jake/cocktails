@@ -24,7 +24,7 @@ var Ingredients = React.createClass({
         <ul>
           {listitems.map(function(item) {
             var boundclick = this.handleClick.bind(this, item)
-            return <li className="selectable"key={item.pk} onClick={boundclick}
+            return <li key={item.pk} onClick={boundclick}
                     >{item.name}</li>
           }, this)}
         </ul>
