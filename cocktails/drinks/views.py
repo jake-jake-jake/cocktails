@@ -28,7 +28,8 @@ class JSONResponse(HttpResponse):
 
 # class based views
 class DrinkList(generics.ListCreateAPIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, 
+                          IsOwnerOrReadOnly)
     queryset = Drink.objects.all()
     serializer_class = DrinkSerializer
 
@@ -37,7 +38,8 @@ class DrinkList(generics.ListCreateAPIView):
 
 
 class IngredientList(generics.ListCreateAPIView):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, 
+                          IsOwnerOrReadOnly)
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
 
@@ -57,6 +59,7 @@ class DrinkDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly)
     serializer_class = DrinkSerializer
+
     def get_queryset(self):
         return Drink.objects.filter(pk=self.kwargs['pk'])
 
@@ -67,8 +70,10 @@ class UserList(generics.ListAPIView):
 
 
 class UserDetail(generics.RetrieveAPIView):
-    queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def get_queryset(self):
+        return User.objects.filter(pk=self.kwargs['pk'])
 
 
 # return index.html from template
