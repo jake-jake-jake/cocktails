@@ -38,7 +38,8 @@ class DrinkList(generics.ListCreateAPIView):
 
 
 class IngredientList(generics.ListCreateAPIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, 
+                          IsOwnerOrReadOnly)
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
 
