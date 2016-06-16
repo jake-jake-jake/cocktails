@@ -37,7 +37,7 @@ class DrinkList(generics.ListCreateAPIView):
 
 
 class IngredientList(generics.ListCreateAPIView):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
 
@@ -57,6 +57,7 @@ class DrinkDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly)
     serializer_class = DrinkSerializer
+
     def get_queryset(self):
         return Drink.objects.filter(pk=self.kwargs['pk'])
 
