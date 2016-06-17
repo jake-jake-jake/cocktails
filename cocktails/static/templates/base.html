@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>You Look Thirsty</title>
+    {# Google Font #}
+    <link href='https://fonts.googleapis.com/css?family=Lora|Passion+One' rel='stylesheet' type='text/css'>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "js/styles/cocktails.css" %}">
+    {% csrf_token %}
+
+  </head>
+  <body>
+
+  {% block content %}
+      
+  {% endblock content %}
+
+  </body>
+</html>

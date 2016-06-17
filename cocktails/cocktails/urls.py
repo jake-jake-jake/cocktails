@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.contrib import admin
+from django.contrib import admin, auth
 from drinks.views import render_index
 
 
@@ -23,8 +23,7 @@ from drinks.views import render_index
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('drinks.urls', )),
-    url(r'^accounts/login/$', 'django.contrib.auth.views.login',
-        {'template_name': 'admin/login.html'}),
+    url(r'^login/$', auth.views.login),
     url(r'^', include('django.contrib.auth.urls', )),
     url(r'^$', render_index),
 ]

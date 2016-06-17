@@ -46,6 +46,13 @@ html {
   list-style-type: none;
 }
 
+.appContainer .loginForm {
+  font-family: inherit;
+  font-size: 1em;
+  margin-top: 3px;
+  padding-left: 30px;
+}
+
 .searchContainer {
   text-align: center;
 }
