@@ -12,7 +12,7 @@ from rest_framework.parsers import JSONParser
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.template.response import TemplateResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 
 #  Hacking together a response class to get stuff posted to DB
@@ -76,12 +76,6 @@ class UserDetail(generics.RetrieveAPIView):
         return User.objects.filter(pk=self.kwargs['pk'])
 
 
-# return index.html from template
-def render_index(request):
-    return TemplateResponse(request, 'index.html')
-
-
-@csrf_exempt
 def add_ingredient(request):
     data = JSONParser().parse(request)
     print(data)
@@ -90,3 +84,25 @@ def add_ingredient(request):
         serializer.save()
         return JSONResponse(serializer.data, status=201)
     return JSONResponse(serializer.errors, status=400)
+
+
+# return index.html from template
+@ensure_csrf_cookie
+def render_index(request):
+    return TemplateResponse(request, 'index.html')
+
+
+# def user_login(request):
+#     username = request.POST['username']
+#     password = request.POST['password']
+#     user = authenticate(username=username, password=password)
+#     if user is not None:
+#         if user.is_active:
+#             login(request, user)
+#             # Redirect to a success page.
+#         else:
+#             # Return a 'disabled account' error message
+#             ...
+#     else:
+#         # Return an 'invalid login' error message.
+#         ...

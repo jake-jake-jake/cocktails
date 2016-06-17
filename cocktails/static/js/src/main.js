@@ -1,6 +1,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+// CSRF token via JS-Cookie
+var Cookies = require('js-cookie')
+var csrftoken = Cookies.get('csrftoken')
+
 var Drink         = require('./drink.js');
 var DrinkDetail   = require('./drinkDetail.js');
 var Ingredients   = require('./ingredients.js');
@@ -29,6 +33,7 @@ var App = React.createClass({
   
   componentDidMount: function() {
     this.requestIngredientList();
+    console.log(this.props.csrftoken)
   },
   
   search: function(text) {
@@ -122,6 +127,7 @@ var App = React.createClass({
 ReactDOM.render(
   <App ingredientsURL='ingredients.json'
        drinksURL='ingredientsearch/'
-       addIngredientURL='addingredient' />,
+       addIngredientURL='addingredient'
+       csrftoken={csrftoken} />,
   document.getElementById('content')
 );
