@@ -33,7 +33,6 @@ var App = React.createClass({
   
   componentDidMount: function() {
     this.requestIngredientList();
-    console.log(this.props.csrftoken)
   },
   
   search: function(text) {

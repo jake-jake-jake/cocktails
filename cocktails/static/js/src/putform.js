@@ -49,7 +49,6 @@ var PutForm = React.createClass({
     xhr.onload = function() {
       console.log('The request has been processed.')
       console.log('HEY JAKE ALSO DISALLOW GLOBAL PERMISSIONS.')
-      console.log(xhr)
     }.bind(this);
     xhr.send(JSON.stringify(ingredient));
   },
