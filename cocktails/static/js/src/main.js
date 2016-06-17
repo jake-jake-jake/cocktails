@@ -116,7 +116,10 @@ var App = React.createClass({
         <DrinkDetail drink = { this.state.activeDrink } />
         <div className='modalContainer'>
           <button className="loginButton" onClick={this.toggleModal}>Add Something</button>
-          <Modal show={this.state.showModal} toggle={this.toggleModal} formprops={ingPutProps} />
+          <Modal show={this.state.showModal}
+                 toggle={this.toggleModal}
+                 formprops={ingPutProps}
+                 csrftoken={this.props.csrftoken} />
         </div>
       </div>
       );

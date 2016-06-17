@@ -22,6 +22,9 @@ from drinks.views import render_index
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('drinks.urls')),
+    url(r'^', include('drinks.urls', )),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login',
+        {'template_name': 'admin/login.html'}),
+    url(r'^', include('django.contrib.auth.urls', )),
     url(r'^$', render_index),
 ]

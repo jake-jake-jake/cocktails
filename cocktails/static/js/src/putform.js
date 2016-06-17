@@ -44,6 +44,7 @@ var PutForm = React.createClass({
     let url = this.props.url;
     let ingredient = this.state;
     xhr.open("POST", url, true);
+    xhr.setRequestHeader('X-CSRFToken', this.props.csrftoken)
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
       console.log('The request has been processed.')

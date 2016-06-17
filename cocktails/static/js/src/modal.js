@@ -39,7 +39,8 @@ var Modal = React.createClass({
     return (
       <div className="mainModal">
         <div className="inner">
-            <PutForm {...this.props.formprops} />
+            <PutForm csrftoken={this.props.csrftoken}
+                     {...this.props.formprops} />
             <button onClick={this.handleClick}>Close</button>
         </div>
       </div>
