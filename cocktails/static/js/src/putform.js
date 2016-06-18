@@ -26,13 +26,26 @@ var PutForm = React.createClass({
   },
 
   getInitialState: function() {
-    return {}  
+    return {submitted: false,
+
+    }  
   },
 
   updateField: function(elem, event) {
+    // Dynamically set form values; use submitted props as scaffold
     var name = elem.name;
-    let value = event.target.value;
+    let value = event.target.value.trim();
     this.setState({[elem.name]: value})
+  },
+
+  getFormVals: function(elem, event) {
+    // Crete submission object for form, using props as scaffold
+    var submission = {};
+    this.props.fields.map(function(elem) {
+      var name = elem.name
+      submission[name] = this.state[name];
+    }.bind(this), submission);
+    return submission;
   },
 
   putContent: function(e) {
@@ -42,31 +55,42 @@ var PutForm = React.createClass({
     console.log('You submitted the form.');
     let xhr = new XMLHttpRequest();
     let url = this.props.url;
-    let ingredient = this.state;
+    let submission = this.getFormVals();
+    console.log('Submission value from .getFormVals(): ')
+    console.log(submission)
     xhr.open("POST", url, true);
     xhr.setRequestHeader('X-CSRFToken', this.props.csrftoken)
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
-      console.log('The request has been processed.')
-      console.log('HEY JAKE ALSO DISALLOW GLOBAL PERMISSIONS.')
+      this.setState({submitted: true});
+      console.log('The request has been processed.');
     }.bind(this);
-    xhr.send(JSON.stringify(ingredient));
+    xhr.send(JSON.stringify(submission));
   },
 
   render: function() {
     var formelements = this.props.fields
-    return (
-      <div className={this.props.className}>
-        <h3>{this.props.header}</h3>
-        <form onSubmit={this.putContent}>
-          {formelements.map(function(elem, i) {
-            var updateField = this.updateField.bind(this, elem)
-            return <input key={i} onChange={updateField} {...elem} />
-          }, this)}
-          <input type="submit" value={this.props.buttonText} />
-        </form>
-      </div>
-    )
+    if(!this.state.submitted) {
+      return (
+        <div className={this.props.className}>
+          <h2>{this.props.header}</h2>
+          <form onSubmit={this.putContent}>
+            {formelements.map(function(elem, i) {
+              var updateField = this.updateField.bind(this, elem)
+              return <input key={i} onChange={updateField} {...elem} />
+            }, this)}
+            <input type="submit" value={this.props.buttonText} />
+          </form>
+        </div>
+      )
+    } else {
+      return (
+        <div className={this.props.className}>
+          <h2>{this.props.header}</h2>
+          <p>Thanks for your contribution.</p>
+        </div>
+      )
+    }
   }
 });
 
