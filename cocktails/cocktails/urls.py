@@ -23,7 +23,8 @@ from drinks.views import render_index
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('drinks.urls', )),
-    url(r'^login/$', auth.views.login),
     url(r'^', include('django.contrib.auth.urls', )),
     url(r'^$', render_index),
+    url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls'))
 ]

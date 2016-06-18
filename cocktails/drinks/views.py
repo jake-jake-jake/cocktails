@@ -10,6 +10,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from django.http import HttpResponse
 from django.template.response import TemplateResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -90,6 +91,20 @@ def add_ingredient(request):
 @ensure_csrf_cookie
 def render_index(request):
     return TemplateResponse(request, 'index.html')
+
+
+# return json status of user authentication 
+def authentication(request):
+    user = authenticate(username='john', password='secret')
+    if user is not None:
+        # the password verified for the user
+        if user.is_active:
+            print("User is valid, active and authenticated")
+        else:
+            print("The password is valid, but the account has been disabled!")
+    else:
+        # the authentication system was unable to verify the username and password
+        print("The username and password were incorrect.")
 
 
 # def user_login(request):
