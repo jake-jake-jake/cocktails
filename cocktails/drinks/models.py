@@ -14,28 +14,43 @@ class Ingredient(models.Model):
 
 
 class IngredientLine(models.Model):
+    fraction_choices =  ((0, 'Garnish/Dash/etc.'),
+                         (1, '¼'),
+                         (2, '½'),
+                         (3, '¾'),
+                         (4, '1'),
+                         (5, '1¼'),
+                         (6, '1½'),
+                         (7, '1¾'),
+                         (8, '2'),
+                         (9, '2¼'),
+                         (10, '2½'),
+                         (11, '2¾'),
+                         (12, '3'))
+    fractions = {1: '¼',
+                 2: '½',
+                 3: '¾',
+                 4: '1',
+                 5: '1¼',
+                 6: '1½',
+                 7: '1¾',
+                 8: '2',
+                 9: '2¼',
+                10: '2½',
+                11: '2¾',
+                12: '3'}
+
     ing = models.ForeignKey(Ingredient, on_delete=models.CASCADE, default=1)
     amt = models.FloatField(default=0)
-    fractions = {0.25: '¼',
-                  0.5: '½',
-                 0.75: '¾',
-                    1: '1',
-                 1.25: '1¼',
-                  1.5: '1½',
-                 1.75: '1¾',
-                    2: '2',
-                 2.25: '2¼',
-                  2.5: '2½',
-                 2.75: '2¾',
-                    3: '3'}
+    amount = models.IntegerField(default=0, choices=fraction_choices)
 
     class Meta:
-        ordering = ['-amt', 'ing']
+        ordering = ['-amount', 'ing']
 
     def __str__(self):
-        if self.amt == 0:
+        if self.amount == 0:
             return "{}".format(self.ing.name)
-        return "{} oz. {}".format(self.fractions[(self.amt)], self.ing.name)
+        return "{} oz. {}".format(self.fractions[(self.amount)], self.ing.name)
 
 
 class Drink(models.Model):

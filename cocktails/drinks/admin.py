@@ -16,9 +16,9 @@ class IngredientAdmin(admin.ModelAdmin):
 
 @admin.register(IngredientLine)
 class IngredientLineAdmin(admin.ModelAdmin):
-    fields = ('amt', 'ing')
+    fields = ('amount', 'ing')
     class Meta:
-        ordering = ['amt', 'ing']
+        ordering = ['amount', 'ing']
 
     # inlines = [
     #     IngredientInline,
