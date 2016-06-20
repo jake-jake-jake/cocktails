@@ -1,14 +1,17 @@
-appnope==0.1.0
-backports.shutil-get-terminal-size==1.0.0
-decorator==4.0.9
-Django==1.9.6
-djangorestframework==3.3.3
-gnureadline==6.3.3
-ipython==4.2.0
-ipython-genutils==0.1.0
-pexpect==4.1.0
-pickleshare==0.7.2
-ptyprocess==0.5.1
-selenium==2.53.2
-simplegeneric==0.8.1
-traitlets==4.2.1
+defusedxml (0.4.1)
+Django (1.9.6)
+django-allauth (0.25.2)
+django-filter (0.13.0)
+django-rest-auth (0.7.0)
+djangorestframework (3.3.3)
+gunicorn (19.6.0)
+Markdown (2.6.6)
+oauthlib (1.1.2)
+pip (8.1.1)
+psycopg2 (2.6.1)
+python3-openid (3.0.10)
+requests (2.10.0)
+requests-oauthlib (0.6.1)
+setuptools (20.3)
+six (1.10.0)
+wheel (0.29.0)

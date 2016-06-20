@@ -9,8 +9,30 @@ var Drink         = require('./drink.js');
 var DrinkDetail   = require('./drinkDetail.js');
 var Ingredients   = require('./ingredients.js');
 var Search        = require('./search.js');
-var Modal         = require('./modal.js')
-var PutForm       = require('./putform.js')
+// var Modal         = require('./modal.js')
+// var PutForm       = require('./putform.js')
+
+/* variable for modal form props
+  let ingPutProps = {header: "Add an ingredient",
+                       fields: [{placeholder: "Ingredient Name", type: "text", name: "name"},
+                               {placeholder: "ABV", type: "number", step: .5, name: "abv"},
+                               {placeholder: "Type", type: "text", name: "type"}],
+                       url: this.props.addIngredientURL,
+                       className: "putForm",
+                       buttonText: "Add Ingredient"
+                      }; */
+
+/* Component for add ingredent modal; lives at bottom of App component.
+        <div className='modalContainer'>
+          <button className="loginButton" onClick={this.toggleModal}>Add Something</button>
+          <Modal show={this.state.showModal}
+                 toggle={this.toggleModal}
+                 formprops={ingPutProps}
+                 csrftoken={this.props.csrftoken} />
+        </div>
+*/
+
+
 
 var App = React.createClass({
   // Takes two props from the call to ReactDOM: 
@@ -93,14 +115,6 @@ var App = React.createClass({
   
   render: function() {
     var tryone = 'Why don\'t you try one of these?'
-    let ingPutProps = {header: "Add an ingredient",
-                       fields: [{placeholder: "Ingredient Name", type: "text", name: "name"},
-                               {placeholder: "ABV", type: "number", step: .5, name: "abv"},
-                               {placeholder: "Type", type: "text", name: "type"}],
-                       url: this.props.addIngredientURL,
-                       className: "putForm",
-                       buttonText: "Add Ingredient"
-                      };
     return (
       <div className = "appContainer" >
         <h1>Make Yourself a Drink</h1>
@@ -113,13 +127,6 @@ var App = React.createClass({
                items={this.state.drinks}
                select={this.selectDrink} />
         <DrinkDetail drink = { this.state.activeDrink } />
-        <div className='modalContainer'>
-          <button className="loginButton" onClick={this.toggleModal}>Add Something</button>
-          <Modal show={this.state.showModal}
-                 toggle={this.toggleModal}
-                 formprops={ingPutProps}
-                 csrftoken={this.props.csrftoken} />
-        </div>
       </div>
       );
   }
